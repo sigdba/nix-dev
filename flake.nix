@@ -88,6 +88,7 @@
           '';
 
           # This is needed to prevent ansible failing due to locale settings.
+          LOCALE_ARCHIVE = "${glibcLocales}/lib/locale/locale-archive";
           # LC_ALL="C.UTF-8";
           LC_ALL = "en_US.utf8";
           LC_LANG = "en_US.utf8";
