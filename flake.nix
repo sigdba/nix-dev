@@ -89,8 +89,8 @@
 
           # This is needed to prevent ansible failing due to locale settings.
           # LC_ALL="C.UTF-8";
-          LC_ALL = "en_US.UTF-8";
-          LC_LANG = "en_US.UTF-8";
+          LC_ALL = "en_US.utf8";
+          LC_LANG = "en_US.utf8";
         } // mixin;
       }
     );
