@@ -1,0 +1,38 @@
+# See https://pre-commit.com for more information
+# See https://pre-commit.com/hooks.html for more hooks
+repos:
+  - repo: https://github.com/pre-commit/pre-commit-hooks
+    rev: v4.4.0
+    hooks:
+      - id: trailing-whitespace
+      - id: end-of-file-fixer
+      - id: check-yaml
+      - id: check-added-large-files
+
+  - repo: https://github.com/Lucas-C/pre-commit-hooks
+    rev: v1.5.1
+    hooks:
+      - id: forbid-crlf
+      - id: remove-crlf
+      - id: forbid-tabs
+      - id: remove-tabs
+        args: [--whitespaces-count, '2']  # defaults to: 4
+      - id: chmod
+        args: ['644']
+        files: \.md$
+      # - id: insert-license
+      #   files: ^(src|test)/.*\.(clj|cljs|cljc|edn)$
+      #   args:
+      #     - --license-filepath
+      #     - src/license_header.txt        # defaults to: LICENSE.txt
+      #     - --comment-style
+      #     - ;;                            # defaults to:  #
+      #     - --use-current-year
+      #     - --detect-license-in-X-top-lines=20
+      #     # - --fuzzy-match-generates-todo
+      #     # - --no-extra-eol
+
+  - repo: https://github.com/nix-community/nixpkgs-fmt
+    rev: v1.3.0
+    hooks:
+      - id: nixpkgs-fmt
