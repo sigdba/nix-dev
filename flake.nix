@@ -103,7 +103,7 @@
               # Augment the dynamic linker path
               export "LD_LIBRARY_PATH=$LD_LIBRARY_PATH:${lib-path}"
 
-              pipenv sync
+              PIP_IGNORE_INSTALLED=1 pipenv sync
               . "$(pipenv --venv)/bin/activate"
 
               echo "Entered ${site.name} development environment."
