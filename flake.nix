@@ -60,11 +60,28 @@
                   AWS_PROFILE = "${site.aws.profile}";
                 };
               };
+
+              awsSam = {
+                defaults = {
+                  awsSam = {
+                    enabled = false;
+                  };
+                };
+
+                buildInputs = [
+                  aws-sam-cli
+                ];
+              };
             };
 
-            defaults = features.aws.defaults;
+            defaults = features.aws.defaults // features.awsSam.defaults;
             site = defaults // inSite;
-            extras.buildInputs = if site.aws.enabled then features.aws.buildInputs else [ ];
+
+            featureExtras.aws = if site.aws.enabled then features.aws.buildInputs else [ ];
+            featureExtras.awsSam = if site.awsSam.enabled then features.awsSam.buildInputs else [ ];
+
+            extras.buildInputs = featureExtras.aws ++ featureExtras.awsSam;
+
             mixin = if site.aws.enabled then features.aws.env else { };
           in
           {
@@ -81,6 +98,7 @@
               parallel
               unzip
               which
+              just
 
               # other packages needed for compiling python libs
               readline
