@@ -99,11 +99,13 @@
               unzip
               which
               just
+              watchexec
 
               # other packages needed for compiling python libs
               readline
               libffi
               openssl
+              glibcLocalesUtf8
 
               # unfortunately needed because of messing with LD_LIBRARY_PATH below
               openssh
