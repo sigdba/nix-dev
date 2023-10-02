@@ -83,6 +83,8 @@
             extras.buildInputs = featureExtras.aws ++ featureExtras.awsSam;
 
             mixin = if site.aws.enabled then features.aws.env else { };
+
+            glibcLocaleArchivePath = if pkgs.glibcLocales != null then "${pkgs.glibcLocales}/lib/locale/locale-archive" else "";
           in
           {
             buildInputs = [
@@ -128,10 +130,13 @@
 
               echo "Entered ${site.name} development environment."
               export PS1="\n\[\033[1;32m\][nix-shell:\w] $AWS_PROFILE \$\[\033[0m\] ";
+
+              [ -n "${glibcLocaleArchivePath}" ] && export LOCALE_ARCHIVE="${glibcLocaleArchivePath}";
             '';
 
             # This is needed to prevent ansible failing due to locale settings.
-            LOCALE_ARCHIVE = "${glibcLocales}/lib/locale/locale-archive";
+            # if glibcLocales != null LOCALE_ARCHIVE = "${glibcLocales}/lib/locale/locale-archive";
+
             # LC_ALL="C.UTF-8";
             LC_ALL = "en_US.utf8";
             LC_LANG = "en_US.utf8";
