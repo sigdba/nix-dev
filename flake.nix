@@ -133,8 +133,8 @@
               if [ -n "${glibcLocaleArchivePath}" ]; then
                 # This is needed to prevent ansible failing due to locale settings.
                 export LOCALE_ARCHIVE="${glibcLocaleArchivePath}";
-                export LC_ALL = "en_US.utf8";
-                export LC_LANG = "en_US.utf8";
+                export LC_ALL="en_US.utf8";
+                export LC_LANG="en_US.utf8";
               fi
             '';
 
