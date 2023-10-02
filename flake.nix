@@ -53,7 +53,6 @@
                   awscli2
                   ssm-session-manager-plugin
                   git-remote-codecommit
-                  amazon-ecs-cli
                 ];
 
                 env = {
