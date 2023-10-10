@@ -102,6 +102,9 @@
               just
               watchexec
 
+              # Make sure nix works within the shell
+              nixStatic
+
               # other packages needed for compiling python libs
               readline
               libffi
