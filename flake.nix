@@ -130,15 +130,16 @@
               PIP_IGNORE_INSTALLED=1 pipenv sync
               . "$(pipenv --venv)/bin/activate"
 
-              echo "Entered ${site.name} development environment."
               export PS1="\n\[\033[1;32m\][nix-shell:\w] $AWS_PROFILE \$\[\033[0m\] ";
 
               if [ -n "${glibcLocaleArchivePath}" ]; then
                 # This is needed to prevent ansible failing due to locale settings.
-                export LOCALE_ARCHIVE="${glibcLocaleArchivePath}";
-                export LC_ALL="en_US.utf8";
-                export LC_LANG="en_US.utf8";
+                export LOCALE_ARCHIVE="${glibcLocaleArchivePath}"
+                [ -z "$LC_ALL" ] && export LC_ALL="en_US.utf8"
+                [ -z "$LC_LANG" ] && export LC_LANG="en_US.utf8"
               fi
+
+              echo "Entered ${site.name} development environment."
             '';
 
 
